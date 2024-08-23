@@ -1,26 +1,40 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Sample data for each chart
-    const productCategories = ['Category 1', 'Category 2', 'Category 3', 'Category 4', 'Category 5'];
-    const productSalesData = [50, 60, 70, 80, 90];
+// Initial datasets
+const datasets = {
+    1: {
+        bar: [65, 59, 80, 81, 56, 55, 40],
+        line: [28, 48, 40, 19, 86, 27, 90],
+        pie: [10, 20, 30, 40]
+    },
+    2: {
+        bar: [45, 79, 60, 91, 36, 75, 60],
+        line: [38, 58, 50, 29, 76, 37, 100],
+        pie: [15, 25, 35, 25]
+    }
+};
 
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
-    const revenueData = [1000, 1200, 1100, 1300, 1400, 1500];
+// Function to generate random colors for pie chart
+function getRandomColors(length) {
+    const colors = [];
+    for (let i = 0; i < length; i++) {
+        colors.push(`rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.7)`);
+    }
+    return colors;
+}
 
-    const marketShareLabels = ['Category A', 'Category B', 'Category C'];
-    const marketShareData = [40, 30, 30];
-
-    // Bar chart: Product Sales
-    const productSalesCtx = document.getElementById('productSalesChart').getContext('2d');
-    new Chart(productSalesCtx, {
+// Chart configuration
+const config = {
+    bar: {
         type: 'bar',
         data: {
-            labels: productCategories,
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
             datasets: [{
-                label: 'Product Sales',
-                data: productSalesData,
-                backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
+                label: 'Bar Chart Data',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                hoverBackgroundColor: 'rgba(75, 192, 192, 0.4)',
+                hoverBorderColor: 'rgba(75, 192, 192, 1)',
+                data: datasets[1].bar,
             }]
         },
         options: {
@@ -32,20 +46,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         }
-    });
-
-    // Line chart: Revenue Trends
-    const revenueTrendsCtx = document.getElementById('revenueTrendsChart').getContext('2d');
-    new Chart(revenueTrendsCtx, {
+    },
+    line: {
         type: 'line',
         data: {
-            labels: months,
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
             datasets: [{
-                label: 'Revenue Trends',
-                data: revenueData,
-                fill: false,
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1
+                label: 'Line Chart Data',
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 1,
+                hoverBackgroundColor: 'rgba(153, 102, 255, 0.4)',
+                hoverBorderColor: 'rgba(153, 102, 255, 1)',
+                data: datasets[1].line,
             }]
         },
         options: {
@@ -53,29 +66,51 @@ document.addEventListener('DOMContentLoaded', function() {
             maintainAspectRatio: false,
             scales: {
                 y: {
-                    beginAtZero: false
+                    beginAtZero: true
                 }
             }
         }
-    });
-
-    // Pie chart: Market Share Distribution
-    const marketShareCtx = document.getElementById('marketShareChart').getContext('2d');
-    new Chart(marketShareCtx, {
+    },
+    pie: {
         type: 'pie',
         data: {
-            labels: marketShareLabels,
+            labels: ['Category 1', 'Category 2', 'Category 3', 'Category 4'],
             datasets: [{
-                label: 'Market Share',
-                data: marketShareData,
-                backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(255, 206, 86, 0.6)'],
-                borderColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-                borderWidth: 1
+                label: 'Pie Chart Data',
+                backgroundColor: getRandomColors(4),
+                data: datasets[1].pie,
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false
         }
-    });
-});
+    }
+};
+
+// Render the charts
+let barChart, lineChart, pieChart;
+
+window.onload = function() {
+    const barCtx = document.getElementById('barChart').getContext('2d');
+    const lineCtx = document.getElementById('lineChart').getContext('2d');
+    const pieCtx = document.getElementById('pieChart').getContext('2d');
+    
+    barChart = new Chart(barCtx, config.bar);
+    lineChart = new Chart(lineCtx, config.line);
+    pieChart = new Chart(pieCtx, config.pie);
+};
+
+// Function to switch datasets
+function switchDataset(datasetNumber) {
+    barChart.data.datasets[0].data = datasets[datasetNumber].bar;
+    barChart.update();
+    
+    lineChart.data.datasets[0].data = datasets[datasetNumber].line;
+    lineChart.update();
+    
+    pieChart.data.datasets[0].data = datasets[datasetNumber].pie;
+    pieChart.data.datasets[0].backgroundColor = getRandomColors(datasets[datasetNumber].pie.length);
+    pieChart.update();
+}
+
