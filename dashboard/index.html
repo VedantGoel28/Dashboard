@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Dashboard</title>
+    <title>Advanced Analytic Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            display: flex;
-            justify-content: space-around;
-        }
-        .chart-container {
-            width: 400px;
-            height: 400px;
-        }
-    </style>
 </head>
 <body>
-    <div class="chart-container">
-        <canvas id="productSalesChart"></canvas>
+    <div class="container">
+        <h1>Advanced Analytic Dashboard</h1>
+        
+        <div class="chart-container">
+            <canvas id="barChart"></canvas>
+        </div>
+        
+        <div class="chart-container">
+            <canvas id="lineChart"></canvas>
+        </div>
+        
+        <div class="chart-container">
+            <canvas id="pieChart"></canvas>
+        </div>
+        
+        <div class="button-container">
+            <button onclick="switchDataset(1)">Dataset 1</button>
+            <button onclick="switchDataset(2)">Dataset 2</button>
+        </div>
     </div>
-    <div class="chart-container">
-        <canvas id="revenueTrendsChart"></canvas>
-    </div>
-    <div class="chart-container">
-        <canvas id="marketShareChart"></canvas>
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>
+
