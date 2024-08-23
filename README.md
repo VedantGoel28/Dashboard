@@ -35,5 +35,8 @@ Dataset Management: How datasets are structured and managed within the script.js
 ### 🎨 Design Philosophy
 The dashboard is designed to be user-friendly and visually appealing, with a focus on clarity and ease of use. It adapts to different screen sizes, ensuring a seamless experience across devices.
 
+![Screenshot 2024-08-23 150903](https://github.com/user-attachments/assets/89b0b3db-38fc-4c00-b725-93da7cdc1907)
+
+
 ### 🤝 Contributions
 Contributions are welcome! If you have suggestions for new features or improvements, feel free to fork the repository, make changes, and submit a pull request.
