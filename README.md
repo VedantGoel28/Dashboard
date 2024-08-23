@@ -22,7 +22,7 @@ Open the Dashboard:
 Open index.html in your web browser to view and interact with the dashboard.
 
 ### 📊 Usage
-Viewing Charts: The dashboard displays a bar chart, line chart, and pie chart for data visualization.
+Viewing Charts: The dashboard displays a bar chart, line chart, and pie chart for data visualization.<br>
 Switching Datasets: Use the buttons to switch between different datasets and see how the charts update accordingly.
 
 ### 🧪 Testing
